@@ -80,7 +80,7 @@ class Reset_Screen extends Component {
 
   onReset() {
     // this.setState({ loadingState: true });
-    console.log("Reset_Screen:Line 90: Email");
+    // console.log("Reset_Screen:Line 90: Email");
     NavigatorService.reset('welcome_screen');
     // this.props.navigation.navigate('welcome_screen');
     // this.setState({ loadingState: false });
@@ -103,7 +103,7 @@ class Reset_Screen extends Component {
   // Validate the form inputs
   validateInput(inputName, inputVal) {
 
-    console.log('profile_screen:line114:' + inputName + ' ' + inputVal);
+    // console.log('profile_screen:line114:' + inputName + ' ' + inputVal);
     if (inputName == 'emailReset') {
       if (validator.isEmail(inputVal)){
         this.setState({ emailError: '' });
@@ -119,7 +119,7 @@ class Reset_Screen extends Component {
   }
 
   renderSpinner() {
-    console.log('Profile_Screen:line171: ' + this.state.loadingState);
+    // console.log('Profile_Screen:line171: ' + this.state.loadingState);
     if (this.state.loadingState) {
       return (
           <Spinner visible={true} color={'#FFFFFF'} size={'large'} />
@@ -132,8 +132,8 @@ class Reset_Screen extends Component {
     let keyboardUp_justifyContent = (this.state.keyboardflag) ? 'flex-start' : 'space-between';
     let keyboardUp_styles_content = {justifyContent: keyboardUp_justifyContent};
 
-    console.log('Reset_Screen:Line 157: Rendering Reset_Screen');
-    console.log(keyboardUp_styles_content);
+    // console.log('Reset_Screen:Line 157: Rendering Reset_Screen');
+    // console.log(keyboardUp_styles_content);
 
     return (
 

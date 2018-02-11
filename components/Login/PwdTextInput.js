@@ -32,6 +32,7 @@ class PwdTextInput extends Component {
 
   // Validate the form inputs
   validateInput(inputName, inputVal) {
+    console.log('hit')
 
     if (inputName == 'password') {
       if (validator.isAscii(inputVal)){
@@ -61,7 +62,7 @@ class PwdTextInput extends Component {
       <View style = {styles.emailPwdContainer}>
         <RkTextInput
           rkType='rounded'
-          placeholder='Password'
+          placeholder={this.props.passwordPlaceholder}
           secureTextEntry={true}
           value={this.props.password}
           onChangeText={password => this.onPasswordChange(password)}

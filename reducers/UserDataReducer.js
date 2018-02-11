@@ -7,7 +7,7 @@ const INITIAL_STATE = {};
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case USERDETAILS_FETCH_SUCCESS:
-      console.log(action);
+      // console.log(action);
       return { ...state, userdetails: action.payload };
     default:
       return state;

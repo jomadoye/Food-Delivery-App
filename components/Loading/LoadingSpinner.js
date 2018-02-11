@@ -10,7 +10,7 @@ class LoadingSpinner extends Component {
   render() {
 
     if ( this.props.loginStatus == 'checking' || this.props.loginStatus == 'fbchecking' ) {
-        console.log('loading spinner : line 13: Turned spinner on as login status is checking ');
+        // console.log('loading spinner : line 13: Turned spinner on as login status is checking ');
         // using the visibility flag on the spinner doesnot work.
         // The only way to get rid of the spinner is to unmount it
         return (
@@ -21,7 +21,7 @@ class LoadingSpinner extends Component {
     }
 
     if ( this.props.parentFlag == true ) {
-        console.log('loading spinner : line 24: Turned spinner on based on props flag ');
+        // console.log('loading spinner : line 24: Turned spinner on based on props flag ');
         // return the prop when the parent passes true flag
         return (
           <View>
@@ -30,7 +30,7 @@ class LoadingSpinner extends Component {
         );
     }
 
-    console.log('loading spinner : line 16: Turned spinner oFF ');
+    // console.log('loading spinner : line 16: Turned spinner oFF ');
     return (null);
 
   }

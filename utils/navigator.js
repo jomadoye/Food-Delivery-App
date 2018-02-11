@@ -11,8 +11,8 @@ function setContainer(container: Object) {
 }
 
 function reset(routeName: string, params?: NavigationParams) {
-  console.log('navigator: utils/navigator.js ---------------------->  Here');
-  console.log('routeName = ' + routeName);
+  // console.log('navigator: utils/navigator.js ---------------------->  Here');
+  // console.log('routeName = ' + routeName);
   _container.dispatch(
     NavigationActions.reset({
       index: 0,

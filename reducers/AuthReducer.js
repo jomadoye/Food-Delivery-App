@@ -61,9 +61,9 @@ export default (state = INITIAL_STATE, action) => {
     case LOGIN_USER:
       return { ...state, error: '' };
     case LOGIN_STATUS_CHANGED:
-      console.log('AuthReducer: LOGIN_STATUS_CHANGED');
+      // console.log('AuthReducer: LOGIN_STATUS_CHANGED');
       if (action.payload == 'notloggedin') {
-        console.log('Auth reducer: notloggedin');
+        // console.log('Auth reducer: notloggedin');
         return { ...state, loginStatus: action.payload, email: '', password: '', phone:'', firstname: '', lastname: '', error:'', user: null };
       } else {
         return { ...state, loginStatus: action.payload};
@@ -73,6 +73,7 @@ export default (state = INITIAL_STATE, action) => {
     case LOGIN_USER_SUCCESS:
       return { ...state, ...RESET_STATE, user: action.payload, loginStatus: 'loggedin', email: '', password: ''};
     case LOGIN_USER_FAIL:
+      // console.log('I should display now my error message is', action.payload)
       return { ...state, error: action.payload, password: '', loginStatus: 'loginfailed'  };
     default:
       return state;

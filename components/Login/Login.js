@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Keyboard, Dimensions, LayoutAnimation } from 'react-native';
+import { View, Keyboard, Dimensions, LayoutAnimation, Text } from 'react-native';
 import { connect } from 'react-redux';
 
 import ErrorMessage from './../ErrorMessage';
@@ -26,8 +26,10 @@ class Login extends Component {
     super(props)
     this.state = {
       keyboardflag: false,
-      showEmailPwdState: false
+      showEmailPwdState: true
     }
+
+    this.hack = this.hack.bind(this);
   }
 
   componentWillMount () {
@@ -64,14 +66,16 @@ class Login extends Component {
       return (
         <View>
           <EmailTextInput />
-          <PwdTextInput />
+          <PwdTextInput passwordPlaceholder={this.props.passwordPlaceholder}/>
           <EmailPwdButton emailPwdBtnStr={this.props.emailPwdBtnStr} />
         </View>
       );
     }
   }
 
-//
+ hack() {
+   return this.props.error === 'There is no user record corresponding to this identifier. The user may have been deleted.' ? true : false;
+ }
 
 
   pressEmailPwdButton() {
@@ -90,7 +94,7 @@ class Login extends Component {
           keyboardUp_justifyContent = (this.state.keyboardflag) ? 'flex-start' : 'space-between';
       }
       else {
-        console.log(this.props.loginStatus);
+        // console.log(this.props.loginStatus);
         // if fbchecking act like the keyboard is down even if it is up
         android_s_c_marginTop = 0;
         keyboardUp_justifyContent = 'space-between';
@@ -109,7 +113,6 @@ class Login extends Component {
       console.log(android_styles_container);
 
       */
-
       return (
         <View style={{ ...styles.screen, ...keyboardUp_styles_content}}>
 
@@ -127,6 +130,13 @@ class Login extends Component {
           </View>
 
           {this._renderEmailPwdOption()}
+
+          { this.hack() && 
+          <View style={{...styles.error_message_container}}>
+            <Text style={{ ...styles.error_message }}>
+              Invalid Email or password
+            </Text>
+          </View> }
 
           <FooterNavButtons
             emailPwdBtnStr={this.props.emailPwdBtnStr}
@@ -148,9 +158,10 @@ class Login extends Component {
 }
 
 //
+
 const mapStateToProps = ({ auth }) => {
-  const { loginStatus, } = auth;
-  return { loginStatus, };
+  const { loginStatus, error } = auth;
+  return { loginStatus, error};
 };
 
 let styles = RkStyleSheet.create(theme => ({
@@ -158,6 +169,16 @@ let styles = RkStyleSheet.create(theme => ({
     flex: 1,
     backgroundColor: theme.colors.screen.base
   },
+  error_message: {
+    color: 'red',
+    textAlign: 'center', 
+    fontWeight: 'bold',
+    fontSize: 25,
+    marginTop: 0,
+  },
+  error_message_container: {
+    alignItems: 'center',
+  }
 }));
 
 export default connect(mapStateToProps,null)(Login);

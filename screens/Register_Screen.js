@@ -16,6 +16,7 @@ class Register_Screen extends Component {
       return (
           <Login
             emailPwdBtnStr='SignUp'
+            passwordPlaceholder='Enter your new password'
             fbBtnStr='Facebook SignUp'
             showEmailPwdOption={false} // the email password option will be hidden
             onNavString1='Already have an account?'

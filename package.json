@@ -21,5 +21,8 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "validator": "^8.2.0"
+  },
+  "devDependencies": {
+    "redux-devtools-extension": "^2.13.2"
   }
 }

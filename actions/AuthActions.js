@@ -78,7 +78,7 @@ export const lastnameChanged = (text) => {
 };
 
 export const loginStatusChanged = (text) => {
-  console.log ("login status : " + text);
+  // console.log ("login status : " + text);
   return {
     type: LOGIN_STATUS_CHANGED,
     payload: text
@@ -86,7 +86,7 @@ export const loginStatusChanged = (text) => {
 };
 
 export const loadWelcomeChanged = (text) => {
-  console.log ("load Windows Screen : " + text);
+  // console.log ("load Windows Screen : " + text);
   return {
     type: LOAD_WELCOME_CHANGED,
     payload: text
@@ -95,7 +95,6 @@ export const loadWelcomeChanged = (text) => {
 
 
 export const loginUser = ({ email, password }) => {
-
   return async (dispatch) => {
 
     dispatch({
@@ -105,11 +104,11 @@ export const loginUser = ({ email, password }) => {
     dispatch({ type: LOGIN_USER });
     try {
       let user = await firebase.auth().signInWithEmailAndPassword(email, password);
-      console.log('user logged successfully');
+      // console.log('user logged successfully');
       loginUserSuccess(dispatch, user);
     }
     catch (error) {
-      console.log(error);
+      // console.log('-----> loginUser')
       let err_message = error.message;
       loginUserFail(dispatch, err_message);
     }
@@ -166,11 +165,11 @@ export const signupUser = ({ email, password, phone, firstname, lastname  }) => 
     });
     dispatch({ type: SIGNUP_USER });
     var displayName = firstname + ' ' + lastname;
-    var phoneNumber = '+1'+ phone;
-    console.log(email);
-    console.log(password);
-    console.log(displayName);
-    console.log(phoneNumber);
+    var phoneNumber = '+234'+ phone;
+    // console.log(email);
+    // console.log(password);
+    // console.log(displayName);
+    // console.log(phoneNumber);
 
     try {
       let user = await firebase.auth().createUserWithEmailAndPassword(email, password);
@@ -183,7 +182,7 @@ export const signupUser = ({ email, password, phone, firstname, lastname  }) => 
         lastname,
         displayName
       });
-      console.log(user);
+      // console.log(user);
       loginUserSuccess(dispatch, user);
       dispatch({
         type: ERROR_SET,
@@ -192,6 +191,7 @@ export const signupUser = ({ email, password, phone, firstname, lastname  }) => 
     }
     catch (error) {
       console.log(error);
+      console.log('-----> signup')
       loginUserFail(dispatch);
     }
 

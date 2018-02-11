@@ -29,17 +29,17 @@ class Welcome_Screen extends Component {
   }
 
   componentDidMount() {
-      console.log('---------------------------');
-      console.log('component did mount');
-      console.log('loadAssetAsync');
+      // console.log('---------------------------');
+      // console.log('component did mount');
+      // console.log('loadAssetAsync');
       if ( !this.props.fontLoaded ) {
         // this._loadAssetsAsync();
         loadAssetsAsync();
-        console.log('All fonts loaded !');
+        // console.log('All fonts loaded !');
         this.props.fontLoadedChanged(true);
         // note that the authStateChanged is only called
         // initally when the fonts are loaded
-        console.log('authstatechanged');
+        // console.log('authstatechanged');
         this.props.authStateChanged();
     }
   }

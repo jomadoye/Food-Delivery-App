@@ -41,7 +41,7 @@ export default class App extends React.Component {
 
   componentWillMount() {
 
-    console.log(firebaseConfig);
+    // console.log(firebaseConfig);
     firebase.initializeApp(firebaseConfig);
 
   }

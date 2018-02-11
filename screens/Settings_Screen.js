@@ -51,7 +51,7 @@ class Settings_Screen extends Component {
   constructor(props) {
     super(props);
     this.user = users[8];
-    console.log(this.user);
+    // console.log(this.user);
 
     this.state = {
       firstName: this.user.firstName,
@@ -63,8 +63,8 @@ class Settings_Screen extends Component {
 
   componentWillMount() {
     this.props.userDetailsFetch();
-    console.log('userdetails');
-    console.log(this.props.userdetails);
+    // console.log('userdetails');
+    // console.log(this.props.userdetails);
     if ( this.props.userdetails ) {
       const {myfirstname} = this.props.userdetails;
       this.setState({ firstName: myfirstname });
@@ -72,10 +72,10 @@ class Settings_Screen extends Component {
   }
 
   render() {
-    console.log('userdetails');
-    console.log(this.props.userdetails);
-    console.log('RkTheme.current.colors.accent = ' + RkTheme.current.colors.acc);
-    console.log('RkTheme.current.colors.alterBackground = ' + RkTheme.current.colors.alterBackground);
+    // console.log('userdetails');
+    // console.log(this.props.userdetails);
+    // console.log('RkTheme.current.colors.accent = ' + RkTheme.current.colors.acc);
+    // console.log('RkTheme.current.colors.alterBackground = ' + RkTheme.current.colors.alterBackground);
     if ( this.props.userdetails ) {
       var {firstname, lastname, email, phone} = this.props.userdetails;
     }

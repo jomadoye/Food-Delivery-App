@@ -34,7 +34,7 @@ class PhoneTextInput extends Component {
   validateInput(inputName, inputVal) {
 
     if (inputName == 'phone') {
-      if (validator.isMobilePhone(inputVal, 'en-US')){
+      if (validator.isMobilePhone(inputVal, 'en-NG')){
         this.setState({ phoneError: '' });
         this.setState({ phoneFlag: 1 });
         return true;

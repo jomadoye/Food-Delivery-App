@@ -64,7 +64,6 @@ class EmailPwdButton extends Component {
       <View>
         <GradientButton
           onPress={() => {
-            console.log("Hello");
             this.onButtonPress();
           }}
           rkType='large'

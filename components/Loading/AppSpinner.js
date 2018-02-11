@@ -9,7 +9,7 @@ class AppSpinner extends Component {
 
   render() {
       width = Dimensions.get('window').width / 3;
-      console.log('rendering app loading screen');
+      // console.log('rendering app loading screen');
       if (Platform.OS === 'ios') {
         return (
           <AppLoading />

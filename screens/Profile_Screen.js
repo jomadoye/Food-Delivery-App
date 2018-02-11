@@ -82,6 +82,7 @@ class ProfileScreen extends Component {
   // Call action if the value is changed
 
   onRegisterPressAndReady() {
+    // console.log('---------------')
     this.setState({ loadingState: true });
     // this.props.navigation.navigate('register_screen')
     NavigatorService.reset('register_screen');
@@ -94,7 +95,7 @@ class ProfileScreen extends Component {
     let keyboardUp_justifyContent = (this.state.keyboardflag) ? 'flex-start' : 'space-between';
     let keyboardUp_styles_content = {justifyContent: keyboardUp_justifyContent};
 
-    console.log('Profile_Screen:Line 230: Rendering Profile screen');
+    // console.log('Profile_Screen:Line 230: Rendering Profile screen');
     // style={{...styles.screen, ...keyboardUp_styles_content}}
     return (
       <View style={{ ...styles.screen, ...keyboardUp_styles_content}}>

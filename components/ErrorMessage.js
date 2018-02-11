@@ -26,10 +26,19 @@ class ErrorMessage extends Component {
   );
 
   render() {
+    let toDisplay;
+    if (this.props.error == '' ||
+      this.props.error === 'There is no user record corresponding to this identifier. The user may have been deleted.') {
+        toDisplay = false;
+      } else {
+        toDisplay = true;
+      }
+      console.log(this.props.error, 'this.props.error')
+      console.log(toDisplay, 'toDisplay')
     return (
       <View>
         <Modal
-          isVisible={this.props.error != ''}
+          isVisible={toDisplay}
           animationIn={'slideInLeft'}
           animationOut={'slideOutRight'}
           style={styles.bottomModal}
