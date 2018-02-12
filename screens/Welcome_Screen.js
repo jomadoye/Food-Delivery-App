@@ -29,44 +29,12 @@ class Welcome_Screen extends Component {
   }
 
   componentDidMount() {
-      // console.log('---------------------------');
-      // console.log('component did mount');
-      // console.log('loadAssetAsync');
       if ( !this.props.fontLoaded ) {
-        // this._loadAssetsAsync();
         loadAssetsAsync();
-        // console.log('All fonts loaded !');
         this.props.fontLoadedChanged(true);
-        // note that the authStateChanged is only called
-        // initally when the fonts are loaded
-        // console.log('authstatechanged');
         this.props.authStateChanged();
     }
   }
-
-  /*
-  cacheFonts(fonts) {
-    return (fonts.map(font => Font.loadAsync(font)));
-  }
-
-  async _loadAssetsAsync() {
-
-    const fontAssets = this.cacheFonts([
-      {'fontawesome': require('./../assets/fonts/fontawesome.ttf')},
-      {'icomoon': require('./../assets/fonts/icomoon.ttf')},
-      {'Righteous-Regular': require('./../assets/fonts/Righteous-Regular.ttf')},
-      {'Roboto-Bold': require('./../assets/fonts/Roboto-Bold.ttf')},
-      {'Roboto-Light': require('./../assets/fonts/Roboto-Light.ttf')},
-      {'Roboto-Medium': require('./../assets/fonts/Roboto-Medium.ttf')},
-      {'Roboto-Regular': require('./../assets/fonts/Roboto-Regular.ttf')},
-    ]);
-
-    await Promise.all(fontAssets);
-    console.log('All fonts loaded !');
-    this.props.fontLoadedChanged(true);
-  }
-
-  */
 
   changeIndex(index) {
     this.setState({index})
@@ -92,7 +60,6 @@ class Welcome_Screen extends Component {
           text="GET STARTED"
           onPress={() => {
             NavigatorService.reset('profile_screen');
-            // this.props.navigation.navigate('profile_screen');
           }}/>
       </View>
     )

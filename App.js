@@ -5,8 +5,6 @@ import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
 import ReduxThunk from 'redux-thunk';
 import reducers from './reducers';
-// import { Font } from 'expo';
-
 
 import { StyleSheet, Text, View, Platform, StatusBar } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
@@ -15,23 +13,20 @@ import { bootstrap } from './config/bootstrap';
 import { RkStyleSheet, RkTheme } from 'react-native-ui-kitten';
 import NavigatorService from './utils/navigator';
 
-// import KittenTheme from './config/theme';
-
 import Welcome_Screen from './screens/Welcome_Screen';
 import Register_Screen from './screens/Register_Screen';
 import Login_Screen from './screens/Login_Screen';
-// import Loading_Screen from './screens/Loading_Screen';
 import Menu_Screen from './screens/Menu_Screen';
 import Orders_Screen from './screens/Orders_Screen';
 import Location_Screen from './screens/Location_Screen';
 import Profile_Screen from './screens/Profile_Screen';
 import Reset_Screen from './screens/Reset_Screen';
 import Settings_Screen from './screens/Settings_Screen';
+import Vendor_Screen from './screens/Vendor_Screen';
+import VendorSinglePage_Screen from './screens/VendorSinglePage_Screen';
 
 
 export default class App extends React.Component {
-
-  //state = { loggedIn: true };
 
   constructor(props) {
     super(props);
@@ -40,40 +35,8 @@ export default class App extends React.Component {
   }
 
   componentWillMount() {
-
-    // console.log(firebaseConfig);
     firebase.initializeApp(firebaseConfig);
-
   }
-
-/*
-  async componentDidMount() {
-    await Font.loadAsync({
-      'fontawesome': require('./assets/fonts/fontawesome.ttf'),
-      'icomoon': require('./assets/fonts/icomoon.ttf'),
-      'Righteous-Regular': require('./assets/fonts/Righteous-Regular.ttf'),
-      'Roboto-Bold': require('./assets/fonts/Roboto-Bold.ttf'),
-      'Roboto-Light': require('./assets/fonts/Roboto-Light.ttf'),
-      'Roboto-Medium': require('./assets/fonts/Roboto-Medium.ttf'),
-      'Roboto-Regular': require('./assets/fonts/Roboto-Regular.ttf'),
-    });
-  }
-*/
-
-/*
-
-menu_scr: {
-  screen: StackNavigator({
-    menu_screen: { screen: Menu_Screen },
-    location_screen: { screen: Location_Screen },
-  })
-},
-orders_screen: { screen: Orders_Screen },
-settings_screen: { screen: Settings_Screen },
-
-*/
-
-
 
   render() {
 
@@ -112,15 +75,15 @@ settings_screen: { screen: Settings_Screen },
       tabBarPosition: 'bottom',
     })
 
-//       loading_scr: { screen: Loading_Screen },
-
     const LoginNavigator = StackNavigator({
       welcome_screen: { screen: Welcome_Screen },
       register_screen: { screen: Register_Screen },
       reset_screen: { screen: Reset_Screen },
       profile_screen: { screen: Profile_Screen },
       login_screen: { screen: Login_Screen},
-      main_screen: { screen: MainNavigator}
+      vendor_screen: { screen: Vendor_Screen},
+      vendor_single_page_screen: { screen: VendorSinglePage_Screen},
+      main_screen: { screen: MainNavigator},
       },
       {
         navigationOptions: {
