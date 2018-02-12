@@ -33,8 +33,8 @@ class ErrorMessage extends Component {
       } else {
         toDisplay = true;
       }
-      console.log(this.props.error, 'this.props.error')
-      console.log(toDisplay, 'toDisplay')
+      // console.log(this.props.error, 'this.props.error')
+      // console.log(toDisplay, 'toDisplay')
     return (
       <View>
         <Modal
