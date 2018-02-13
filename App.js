@@ -24,6 +24,7 @@ import Reset_Screen from './screens/Reset_Screen';
 import Settings_Screen from './screens/Settings_Screen';
 import Vendor_Screen from './screens/Vendor_Screen';
 import VendorSinglePage_Screen from './screens/VendorSinglePage_Screen';
+import VendorProfile_Screen from './screens/VendorProfile_Screen.js';
 
 
 export default class App extends React.Component {
@@ -83,6 +84,7 @@ export default class App extends React.Component {
       login_screen: { screen: Login_Screen},
       vendor_screen: { screen: Vendor_Screen},
       vendor_single_page_screen: { screen: VendorSinglePage_Screen},
+      vendor_profile_screen: { screen: VendorProfile_Screen},
       main_screen: { screen: MainNavigator},
       },
       {

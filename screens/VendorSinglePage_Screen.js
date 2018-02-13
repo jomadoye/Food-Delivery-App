@@ -12,9 +12,9 @@ import {
 } from 'react-native-ui-kitten';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import NavigatorService from '../utils/navigator';
 import {Avatar} from '../components';
 import {SocialBar} from '../components';
-
 
 class VendorSinglePage_Screen extends React.Component {
   static navigationOptions = {
@@ -81,7 +81,7 @@ class VendorSinglePage_Screen extends React.Component {
               <RkText style={styles.title} rkType='header4'>{this.data.header}</RkText>
               <RkText rkType='secondary2 hintColor'>{moment().add(this.data.time, 'seconds').fromNow()}</RkText>
             </View>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('ProfileV1', {id: this.data.user.id})}>
+            <TouchableOpacity onPress={() => NavigatorService.reset('vendor_profile_screen')}>
               <Avatar rkType='circle' img={this.data.user.photo}/>
             </TouchableOpacity>
           </View>
@@ -111,7 +111,6 @@ let styles = RkStyleSheet.create(theme => ({
 const mapStateToProps = ({ vendor }) => {
   const {
     vendor_single_product_details } = vendor;
-    console.log(vendor_single_product_details, '=;;;;')
   return { vendor_single_product_details };
 };
 

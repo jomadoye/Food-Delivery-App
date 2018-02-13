@@ -7,20 +7,54 @@ import {
   RkText,
   RkButton, RkStyleSheet
 } from 'react-native-ui-kitten';
-import {Avatar} from '../../components';
-import {Gallery} from '../../components';
-import {data} from '../../data';
-import {FontIcons} from '../../assets/icons';
-import formatNumber from '../../utils/textUtils';
+import { connect } from 'react-redux';
+import {Avatar} from '../components';
+import {Gallery} from '../components';
+import {FontIcons} from '../assets/icons';
+import formatNumber from '../utils/textUtils';
 
-export class VendorProfile_Screen extends React.Component {
+export default class VendorProfile_Screen extends React.Component {
   static navigationOptions = {
     title: 'User Profile'.toUpperCase()
   };
 
   constructor(props) {
     super(props);
-    this.user = data.getUser();
+    
+  }
+
+  componentWillMount() {
+    let images = [
+      require('../img/Image10.png'),
+      require('../img/Image11.png'),
+      require('../img/Image2.png'),
+      require('../img/Image3.png'),
+      require('../img/Image4.png'),
+      require('../img/Image1.png'),
+      require('../img/Image12.png'),
+      require('../img/Image8.png'),
+      require('../img/Image6.png'),
+      require('../img/Image9.png'),
+      require('../img/Image5.png'),
+      require('../img/Image7.png'),
+      require('../img/Image5.png'),
+    ];
+    this.user = {
+      id: 1,
+      firstName: 'Helen',
+      lastName: 'Gilbert',
+      phone: '+1 415 670 90 34',
+      country: 'Belarus',
+      email: 'h.gilbert@akveo.com',
+      password: '123456',
+      newPassword: '12345678',
+      confirmPassword: '12345678',
+      photo: require('../img/avatars/Image9.png'),
+      postCount: 86,
+      followersCount: 22102,
+      followingCount: 536,
+      images: images
+    };
   }
 
   render() {
@@ -110,3 +144,11 @@ let styles = RkStyleSheet.create(theme => ({
     alignSelf: 'center'
   }
 }));
+
+// const mapStateToProps = ({ vendor }) => {
+//   const {
+//     vendor_single_product_details } = vendor;
+//   return { vendor_single_product_details };
+// };
+
+// export default connect(mapStateToProps, null)(VendorProfile_Screen);

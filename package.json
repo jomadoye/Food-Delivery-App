@@ -6,6 +6,7 @@
   "private": true,
   "main": "node_modules/expo/AppEntry.js",
   "dependencies": {
+    "eslint": "^4.17.0",
     "expo": "^21.0.0",
     "firebase": "^4.3.0",
     "moment": "^2.20.1",
@@ -24,6 +25,10 @@
     "validator": "^8.2.0"
   },
   "devDependencies": {
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.6.1",
     "redux-devtools-extension": "^2.13.2"
   }
 }
