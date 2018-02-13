@@ -1,4 +1,3 @@
-import Expo from 'expo';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -25,7 +24,6 @@ import Settings_Screen from './screens/Settings_Screen';
 import Vendor_Screen from './screens/Vendor_Screen';
 import VendorSinglePage_Screen from './screens/VendorSinglePage_Screen';
 import VendorProfile_Screen from './screens/VendorProfile_Screen.js';
-
 
 export default class App extends React.Component {
   constructor(props) {
@@ -86,6 +84,7 @@ export default class App extends React.Component {
         vendor_screen: { screen: Vendor_Screen },
         vendor_single_page_screen: { screen: VendorSinglePage_Screen },
         vendor_profile_screen: { screen: VendorProfile_Screen },
+        menu_screen: { screen: Menu_Screen },
         main_screen: { screen: MainNavigator },
       },
       {

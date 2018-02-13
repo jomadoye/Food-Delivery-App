@@ -7,7 +7,9 @@ import {
   RkText,
   RkButton, RkStyleSheet
 } from 'react-native-ui-kitten';
+import { HeaderBackButton } from 'react-navigation';
 import { connect } from 'react-redux';
+import NavigatorService from '../utils/navigator';
 import {Avatar} from '../components';
 import {Gallery} from '../components';
 import {FontIcons} from '../assets/icons';
@@ -15,7 +17,10 @@ import formatNumber from '../utils/textUtils';
 
 export default class VendorProfile_Screen extends React.Component {
   static navigationOptions = {
-    title: 'User Profile'.toUpperCase()
+    title: 'User Profile'.toUpperCase(),
+    headerLeft: <HeaderBackButton
+            onPress={() => NavigatorService.navigate('vendor_single_page_screen')}
+          />,
   };
 
   constructor(props) {

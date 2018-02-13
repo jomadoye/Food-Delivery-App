@@ -18,7 +18,7 @@ import {
   RkCard
 } from 'react-native-ui-kitten';
 import moment from 'moment';
-import { Header } from 'react-navigation';
+import { Header, HeaderBackButton } from 'react-navigation';
 import { Button } from 'react-native-elements';
 import {SocialBar} from '../components';
 import { 
@@ -36,7 +36,12 @@ import NavigatorService from '../utils/navigator';
 class Vendor_Screen extends Component {
 
   static navigationOptions = {
-    title: 'Food List'.toUpperCase()
+    title: 'Food List'.toUpperCase(),
+    headerLeft: <HeaderBackButton
+            onPress={() => {
+              console.log('1');
+              NavigatorService.navigate('menu_screen')}}
+          />,
   };
 
   constructor(props) {

@@ -15,7 +15,7 @@ import {
 } from 'react-native-ui-kitten';
 
 
-import { Header } from 'react-navigation';
+import { Header, HeaderBackButton } from 'react-navigation';
 import { Button } from 'react-native-elements';
 import { logoutUser, userDetailsFetch } from '../actions';
 
@@ -25,14 +25,10 @@ import {Avatar} from './../components';
 import {GradientButton} from './../components/';
 import {FontAwesome} from './../assets/icons';
 import LoadingSpinner from './../components/Loading/LoadingSpinner';
-
-
-
-// FontAwesome.cog
+import NavigatorService from '../utils/navigator';
 
 class Settings_Screen extends Component {
 
-  // Donot show header
   static navigationOptions = {
     headerTitle: 'Profile Settings',
     tabBarIcon: ({ tintColor }) => (
@@ -51,7 +47,6 @@ class Settings_Screen extends Component {
   constructor(props) {
     super(props);
     this.user = users[8];
-    // console.log(this.user);
 
     this.state = {
       firstName: this.user.firstName,
@@ -63,8 +58,6 @@ class Settings_Screen extends Component {
 
   componentWillMount() {
     this.props.userDetailsFetch();
-    // console.log('userdetails');
-    // console.log(this.props.userdetails);
     if ( this.props.userdetails ) {
       const {myfirstname} = this.props.userdetails;
       this.setState({ firstName: myfirstname });
@@ -72,10 +65,6 @@ class Settings_Screen extends Component {
   }
 
   render() {
-    // console.log('userdetails');
-    // console.log(this.props.userdetails);
-    // console.log('RkTheme.current.colors.accent = ' + RkTheme.current.colors.acc);
-    // console.log('RkTheme.current.colors.alterBackground = ' + RkTheme.current.colors.alterBackground);
     if ( this.props.userdetails ) {
       var {firstname, lastname, email, phone} = this.props.userdetails;
     }

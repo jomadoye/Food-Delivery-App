@@ -10,6 +10,7 @@ import {
   RkText,
   RkStyleSheet
 } from 'react-native-ui-kitten';
+import { Header, HeaderBackButton } from 'react-navigation';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import NavigatorService from '../utils/navigator';
@@ -18,7 +19,11 @@ import {SocialBar} from '../components';
 
 class VendorSinglePage_Screen extends React.Component {
   static navigationOptions = {
-    title: 'Single Article View'.toUpperCase()
+    title: 'Single Article View'.toUpperCase(),
+    headerLeft: <HeaderBackButton
+            onPress={() => {
+              NavigatorService.navigate('vendor_screen')}}
+          />,
   };
 
   constructor(props) {
