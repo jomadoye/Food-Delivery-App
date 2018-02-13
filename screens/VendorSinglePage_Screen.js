@@ -10,21 +10,23 @@ import {
   RkText,
   RkStyleSheet
 } from 'react-native-ui-kitten';
+import { connect } from 'react-redux';
+import moment from 'moment';
 import {Avatar} from '../components';
 import {SocialBar} from '../components';
-import moment from 'moment';
 
 
-export default class VendorSinglePage_Screen extends React.Component {
+class VendorSinglePage_Screen extends React.Component {
   static navigationOptions = {
     title: 'Single Article View'.toUpperCase()
   };
 
   constructor(props) {
     super(props);
-    // let {params} = this.props.navigation.state;
-    // let id = params ? params.id : 1;
-    // this.data = data.getArticle(id);
+  }
+
+  componentWillMount() {
+    let { vendor_single_product_details } = this.props;
     let images = [
       require('../img/Image10.png'),
       require('../img/Image11.png'),
@@ -38,8 +40,11 @@ export default class VendorSinglePage_Screen extends React.Component {
       require('../img/Image9.png'),
       require('../img/Image5.png'),
       require('../img/Image7.png'),
+      require('../img/Image5.png'),
     ];
+
     this.data = {
+      // vendor_single_product_details,
       'id': 9,
       'photo': require('../img/photo47.png'),
       'type': 'fact',
@@ -102,3 +107,12 @@ let styles = RkStyleSheet.create(theme => ({
     marginBottom: 5
   },
 }));
+
+const mapStateToProps = ({ vendor }) => {
+  const {
+    vendor_single_product_details } = vendor;
+    console.log(vendor_single_product_details, '=;;;;')
+  return { vendor_single_product_details };
+};
+
+export default connect(mapStateToProps, null)(VendorSinglePage_Screen);

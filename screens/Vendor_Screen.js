@@ -21,7 +21,11 @@ import moment from 'moment';
 import { Header } from 'react-navigation';
 import { Button } from 'react-native-elements';
 import {SocialBar} from '../components';
-import { logoutUser, userDetailsFetch, saveVendorProductsList } from '../actions';
+import { 
+  logoutUser,
+  userDetailsFetch,
+  saveVendorProductsList,
+  saveVendorSingleProductDetails, } from '../actions';
 import users from './../data/raw/users';
 import {Avatar} from './../components';
 import {GradientButton} from './../components/';
@@ -224,13 +228,17 @@ class Vendor_Screen extends Component {
     return post.id;
   }
 
+  handleSingleProductDisplayNavigation(productDetails) {
+    this.props.saveVendorSingleProductDetails(productDetails);
+    NavigatorService.reset('vendor_single_page_screen');
+  }
+
   _renderItem(info) {
     return (
       <TouchableOpacity
         delayPressIn={70}
         activeOpacity={0.8}
-        // onPress={() => this.props.navigation.navigate('Article', {id: info.item.id})}>
-        onPress={() => NavigatorService.reset('vendor_single_page_screen')}>
+        onPress={() => this.handleSingleProductDisplayNavigation(info.item)}>
         <RkCard rkType='imgBlock' style={styles.card}>
           <Image rkCardImg source={info.item.photo}/>
 
@@ -250,7 +258,7 @@ class Vendor_Screen extends Component {
   render() {
     return (
       <FlatList
-        data={this.data}
+        data={this.props.vendor_product_list}
         renderItem={this.renderItem}
         keyExtractor={this._keyExtractor}
         style={styles.container}/>
@@ -275,11 +283,14 @@ let styles = RkStyleSheet.create(theme => ({
 
 const mapStateToProps = ({ userdata, vendor }) => {
   const { userdetails } = userdata;
-  const { vendor_product_list } = vendor;
-  console.log(vendor_product_list, 'vendor_product_list');
-  return { userdetails };
+  const {
+    vendor_product_list } = vendor;
+  return { userdetails, vendor_product_list };
 };
 
 export default connect(mapStateToProps, {
-  logoutUser, userDetailsFetch, saveVendorProductsList
+  logoutUser,
+  userDetailsFetch,
+  saveVendorProductsList,
+  saveVendorSingleProductDetails,
 })(Vendor_Screen);

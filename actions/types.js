@@ -21,3 +21,4 @@ export const FACEBOOK_LOGIN_FAIL = 'facebook_login_fail';
 export const USERDETAILS_FETCH_SUCCESS = 'userdetails_fetch_success';
 export const SAVE_VENDOR_DETAIL = 'save_vendor_detail';
 export const SAVE_VENDOR_PRODUCT_LIST = 'save_vendor_product_list';
+export const SAVE_VENDOR_SINGLE_PRODUCT_DETAILS = 'save_vendor_single_product_details';
