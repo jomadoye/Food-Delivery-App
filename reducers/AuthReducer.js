@@ -7,13 +7,11 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
   LOGIN_USER,
-  LOGOUT_USER,
   LOGIN_STATUS_CHANGED,
   LOAD_WELCOME_CHANGED,
   EMAIL_RESET_CHANGED,
   FONT_LOADED_CHANGED,
-  SIGNUP_USER,
-  ERROR_SET
+  ERROR_SET,
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -27,7 +25,7 @@ const INITIAL_STATE = {
   error: '',
   fontLoaded: false,
   loginStatus: 'initial',
-  loadWelcome: false
+  loadWelcome: false,
 };
 
 const RESET_STATE = {
@@ -37,7 +35,7 @@ const RESET_STATE = {
   phone: '',
   firstname: '',
   lastname: '',
-  error: ''
+  error: '',
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -61,20 +59,24 @@ export default (state = INITIAL_STATE, action) => {
     case LOGIN_USER:
       return { ...state, error: '' };
     case LOGIN_STATUS_CHANGED:
-      // console.log('AuthReducer: LOGIN_STATUS_CHANGED');
-      if (action.payload == 'notloggedin') {
-        // console.log('Auth reducer: notloggedin');
-        return { ...state, loginStatus: action.payload, email: '', password: '', phone:'', firstname: '', lastname: '', error:'', user: null };
-      } else {
-        return { ...state, loginStatus: action.payload};
+      if (action.payload === 'notloggedin') {
+        return {
+          ...state, loginStatus: action.payload, email: '', password: '', phone: '', firstname: '', lastname: '', error: '', user: null,
+        };
       }
+      return { ...state, loginStatus: action.payload };
+
     case LOAD_WELCOME_CHANGED:
       return { ...state, loadWelcome: action.payload };
     case LOGIN_USER_SUCCESS:
-      return { ...state, ...RESET_STATE, user: action.payload, loginStatus: 'loggedin', email: '', password: ''};
+      return {
+        ...state, ...RESET_STATE, user: action.payload, loginStatus: 'loggedin', email: '', password: '',
+      };
     case LOGIN_USER_FAIL:
       // console.log('I should display now my error message is', action.payload)
-      return { ...state, error: action.payload, password: '', loginStatus: 'loginfailed'  };
+      return {
+        ...state, error: action.payload, password: '', loginStatus: 'loginfailed',
+      };
     default:
       return state;
   }

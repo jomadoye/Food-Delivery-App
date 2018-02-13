@@ -6,11 +6,10 @@ import ForgotPwdButton from './ForgotPwdButton';
 import {
   RkStyleSheet,
   RkButton,
-  RkText
+  RkText,
 } from 'react-native-ui-kitten';
 
 class FooterNavButtons extends Component {
-
   /*
   _pressEmailPwdButton() {
 
@@ -38,7 +37,6 @@ class FooterNavButtons extends Component {
 
 
   _renderFooter() {
-
     /*
     let android_s_c_justifyContent = (this.props.keyboardflag) ? 'flex-start' : 'flex-end'; // Platform.OS === 'android' &&
     if ( this.props.emailPwdBtnStr=='SignUp' && !this.props.showEmailPwdState) {
@@ -47,20 +45,21 @@ class FooterNavButtons extends Component {
     android_s_c_justifyContent = 'flex-start';
     let android_styles_footer = {justifyContent: android_s_c_justifyContent};
     */
-    if ( this.props.emailPwdBtnStr=='SignUp'  && !this.props.showEmailPwdState) {
-        // In the case when we are on register screen and the show email-pwd button is not pressed
-        // console.log('show email password option');
-        // {...styles.footer, ...
-        return (
+    if (this.props.emailPwdBtnStr == 'SignUp' && !this.props.showEmailPwdState) {
+      // In the case when we are on register screen and the show email-pwd button is not pressed
+      // console.log('show email password option');
+      // {...styles.footer, ...
+      return (
         <View>
           <View style={styles.textRow}>
-          <RkButton
-              rkType='clear'
-              onPress={ () => { this.props.pressEmailPwdButton() } }>
-              <RkText rkType='primary3'>
+            <RkButton
+              rkType="clear"
+              onPress={() => { this.props.pressEmailPwdButton(); }}
+            >
+              <RkText rkType="primary3">
                 {'Show email-password option'}
               </RkText>
-              <RkText rkType='header6'>
+              <RkText rkType="header6">
                 {''}
               </RkText>
             </RkButton>
@@ -68,36 +67,36 @@ class FooterNavButtons extends Component {
         </View>
 
       );
-    } else {
-      // In the other cases
-      // If we are on the login screen or
-      // If we are on the register screen and the show email-pwd button is pressed
-      // console.log('show parent props option');
+    }
+    // In the other cases
+    // If we are on the login screen or
+    // If we are on the register screen and the show email-pwd button is pressed
+    // console.log('show parent props option');
 
-      // let android_nav_elsewhere = { marginBottom: 20 } ;
-      //style={{...styles.footer, ...android_styles_footer}}
+    // let android_nav_elsewhere = { marginBottom: 20 } ;
+    // style={{...styles.footer, ...android_styles_footer}}
 
-      /*
+    /*
 
       */
-      return (
-        <View>
-          <ForgotPwdButton emailPwdBtnStr={this.props.emailPwdBtnStr} onForgotPassword = {this.props.onForgotPassword} />
-          <View style={ styles.textRow } >
-            <RkButton
-                rkType='clear'
-                onPress={ () => { this._pressNavButton() } }>
-                <RkText rkType='primary3'>
-                  {this.props.onNavString1}
-                </RkText>
-                <RkText rkType='header6'>
-                  {this.props.onNavString2}
-                </RkText>
-              </RkButton>
-          </View>
+    return (
+      <View>
+        <ForgotPwdButton emailPwdBtnStr={this.props.emailPwdBtnStr} onForgotPassword={this.props.onForgotPassword} />
+        <View style={styles.textRow} >
+          <RkButton
+            rkType="clear"
+            onPress={() => { this._pressNavButton(); }}
+          >
+            <RkText rkType="primary3">
+              {this.props.onNavString1}
+            </RkText>
+            <RkText rkType="header6">
+              {this.props.onNavString2}
+            </RkText>
+          </RkButton>
         </View>
-      );
-    }
+      </View>
+    );
   }
 
   /*
@@ -118,19 +117,15 @@ class FooterNavButtons extends Component {
 
   */
 
-  //{ this._renderFooter() }
+  // { this._renderFooter() }
 
   render() {
-
     return (
       <View>
         { this._renderFooter() }
       </View>
     );
-
   }
-
-
 }
 
 /*
@@ -145,13 +140,13 @@ class FooterNavButtons extends Component {
 let styles = RkStyleSheet.create(theme => ({
   footer: {
     justifyContent: 'flex-end',
-    flex: 1
+    flex: 1,
   },
   textRow: {
     justifyContent: 'center',
     flexDirection: 'row',
-    marginBottom: 20
-  }
+    marginBottom: 20,
+  },
 }));
 
 export default FooterNavButtons;

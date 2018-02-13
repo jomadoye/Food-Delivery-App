@@ -1,9 +1,9 @@
-import realm from './realm/realm'
-import users from './raw/users'
-import articles from './raw/articles'
-import notifications from './raw/notifications'
-import conversations from './raw/conversations'
-import cards from './raw/cards'
+import realm from './realm/realm';
+import users from './raw/users';
+import articles from './raw/articles';
+import notifications from './raw/notifications';
+import conversations from './raw/conversations';
+import cards from './raw/cards';
 
 
 function truncate() {
@@ -20,86 +20,86 @@ function truncate() {
 }
 
 function populateUsers() {
-  for (let user of users) {
-    let images = user.images;
+  for (const user of users) {
+    const images = user.images;
     user.images = [];
     realm.write(() => {
-      let created = realm.create('User', user);
-      for (let i of images)
-        created.images.push({id: i});
+      const created = realm.create('User', user);
+      for (const i of images)
+        {created.images.push({id: i});}
     });
   }
 }
 
 function populateArticles() {
-  for (let article of articles) {
-    let userId = articles.indexOf(article) % users.length;
+  for (const article of articles) {
+    const userId = articles.indexOf(article) % users.length;
     article.user = realm.objects('User')[userId];
 
-    let comments = [];
-    for (let comment of article.comments) {
-      let userId = article.comments.indexOf(comment) % users.length;
+    const comments = [];
+    for (const comment of article.comments) {
+      const userId = article.comments.indexOf(comment) % users.length;
       comment.user = realm.objects('User')[userId];
       realm.write(() => {
-        comments.push(realm.create('Comment', comment))
-      })
+        comments.push(realm.create('Comment', comment));
+      });
     }
     article.comments = comments;
     realm.write(() => {
-      realm.create('Article', article)
-    })
+      realm.create('Article', article);
+    });
   }
 }
 
 function populateNotifications() {
-  for (let notification of notifications) {
-    let userId = notifications.indexOf(notification) % users.length;
+  for (const notification of notifications) {
+    const userId = notifications.indexOf(notification) % users.length;
     notification.user = realm.objects('User')[userId];
     realm.write(() => {
-      realm.create('Notification', notification)
-    })
+      realm.create('Notification', notification);
+    });
   }
 }
 
 function populateConversations() {
-  for (let conversation of conversations) {
-    let messages = [];
+  for (const conversation of conversations) {
+    const messages = [];
 
-    for (let message of conversation.messages) {
+    for (const message of conversation.messages) {
       realm.write(() => {
         messages.push(realm.create('Message', message));
-      })
+      });
     }
 
     conversation.messages = messages;
     conversation.withUser = realm.objects('User')
       .filtered(`id="${conversation.withUserId}"`)[0];
     realm.write(() => {
-      realm.create('Conversation', conversation)
-    })
+      realm.create('Conversation', conversation);
+    });
   }
 }
 
 function populateCards() {
-  for (let card of cards) {
+  for (const card of cards) {
     realm.write(() => {
-      realm.create('Card', card)
-    })
+      realm.create('Card', card);
+    });
   }
 }
 
 function populateVersion() {
   realm.write(() => {
-    realm.create('Version', {id: 0})
-  })
+    realm.create('Version', { id: 0 });
+  });
 }
 
-let populate = () => {
-  let version = realm.objects('Version');
+const populate = () => {
+  const version = realm.objects('Version');
   if (version && version.length > 0)
-    return;
+    {return;}
 
-  //truncate();
+  // truncate();
   populateVersion();
   populateUsers();
   populateArticles();
@@ -108,4 +108,4 @@ let populate = () => {
   populateCards();
 };
 
-export default populate
+export default populate;

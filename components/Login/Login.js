@@ -14,171 +14,165 @@ import { loginUser, signupUser, facebookSignin, errorSet, facebookSignup } from 
 import LoadingSpinner from './../Loading/LoadingSpinner';
 
 
-
 import {
-  RkStyleSheet
+  RkStyleSheet,
 } from 'react-native-ui-kitten';
 
 class Login extends Component {
-
   constructor(props) {
-
-    super(props)
+    super(props);
     this.state = {
       keyboardflag: false,
-      showEmailPwdState: true
-    }
+      showEmailPwdState: true,
+    };
 
     this.hack = this.hack.bind(this);
   }
 
-  componentWillMount () {
+  componentWillMount() {
     // set listeners on when the keyboard is up or down
     this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow.bind(this));
     this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide.bind(this));
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     // remove the listeners upon exit
-   this.keyboardDidShowListener.remove();
-   this.keyboardDidHideListener.remove();
+    this.keyboardDidShowListener.remove();
+    this.keyboardDidHideListener.remove();
   }
 
-  _keyboardDidShow () {
+  _keyboardDidShow() {
     // use the spring animation when the key board is shown
-    if ( true ) {
+    if (true) {
       LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
     }
     this.setState({ keyboardflag: true });
   }
 
-  _keyboardDidHide () {
+  _keyboardDidHide() {
     // use the spring animation when the key board is hidden
-    if ( true ) {
+    if (true) {
       LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
     }
     this.setState({ keyboardflag: false });
   }
 
   _renderEmailPwdOption() {
-    if ( this.props.emailPwdBtnStr == 'SignIn' || this.state.showEmailPwdState ) {
+    if (this.props.emailPwdBtnStr == 'SignIn' || this.state.showEmailPwdState) {
       // In the case of login screen or if the email pwd button is pressed
       return (
         <View>
           <EmailTextInput />
-          <PwdTextInput passwordPlaceholder={this.props.passwordPlaceholder}/>
+          <PwdTextInput passwordPlaceholder={this.props.passwordPlaceholder} />
           <EmailPwdButton emailPwdBtnStr={this.props.emailPwdBtnStr} />
         </View>
       );
     }
   }
 
- hack() {
-   return this.props.error === 'There is no user record corresponding to this identifier. The user may have been deleted.' ? true : false;
- }
+  hack() {
+    return this.props.error === 'There is no user record corresponding to this identifier. The user may have been deleted.';
+  }
 
 
   pressEmailPwdButton() {
-      this.setState({ showEmailPwdState: true });
+    this.setState({ showEmailPwdState: true });
   }
 
 
   render() {
+    android_s_c_marginTop = (this.state.keyboardflag) ? 30 : 0; // Platform.OS === 'android' &&
+    const screen_width = Dimensions.get('window').width;
+    const FbButtonSize = { marginHorizontal: 20 };
 
-      android_s_c_marginTop = (this.state.keyboardflag) ? 30 : 0; // Platform.OS === 'android' &&
-      let screen_width = Dimensions.get('window').width;
-      let FbButtonSize = { marginHorizontal: 20 };
+    if (this.props.loginStatus != 'fbchecking') {
+      // if login status is not fbchecking then react to keyboard up as usual
+      keyboardUp_justifyContent = (this.state.keyboardflag) ? 'flex-start' : 'space-between';
+    } else {
+      // console.log(this.props.loginStatus);
+      // if fbchecking act like the keyboard is down even if it is up
+      android_s_c_marginTop = 0;
+      keyboardUp_justifyContent = 'space-between';
+    }
 
-      if ( this.props.loginStatus != 'fbchecking' ) {
-          // if login status is not fbchecking then react to keyboard up as usual
-          keyboardUp_justifyContent = (this.state.keyboardflag) ? 'flex-start' : 'space-between';
-      }
-      else {
-        // console.log(this.props.loginStatus);
-        // if fbchecking act like the keyboard is down even if it is up
-        android_s_c_marginTop = 0;
-        keyboardUp_justifyContent = 'space-between';
-      }
+    // for the case where there is signup and showemailpwdstate button is not pressed
+    if (this.props.emailPwdBtnStr == 'SignUp' && !this.state.showEmailPwdState) {
+      keyboardUp_justifyContent = 'flex-start';
+    }
 
-      // for the case where there is signup and showemailpwdstate button is not pressed
-      if ( this.props.emailPwdBtnStr=='SignUp' && !this.state.showEmailPwdState ) {
-        keyboardUp_justifyContent = 'flex-start';
-      }
-
-      let keyboardUp_styles_content = {justifyContent: keyboardUp_justifyContent};
-      android_styles_container = {marginTop: android_s_c_marginTop};
-      /*
+    const keyboardUp_styles_content = { justifyContent: keyboardUp_justifyContent };
+    android_styles_container = { marginTop: android_s_c_marginTop };
+    /*
       console.log('This is Login.js +++++++++++++++++++++++');
       console.log(this.props.emailPwdBtnStr);
       console.log(android_styles_container);
 
       */
-      return (
-        <View style={{ ...styles.screen, ...keyboardUp_styles_content}}>
+    return (
+      <View style={{ ...styles.screen, ...keyboardUp_styles_content }}>
 
-          <LoadingSpinner />
+        <LoadingSpinner />
 
-          <View>
-            <LoginHeaderImage
-              keyboardflag = {this.state.keyboardflag}
-              emailPwdBtnStr={this.props.emailPwdBtnStr}
-              />
-          </View>
+        <View>
+          <LoginHeaderImage
+            keyboardflag={this.state.keyboardflag}
+            emailPwdBtnStr={this.props.emailPwdBtnStr}
+          />
+        </View>
 
-          <View style={{ ...FbButtonSize, ...android_styles_container }}>
-            <FbSignInUpButton emailPwdBtnStr={this.props.emailPwdBtnStr} fbBtnStr={this.props.fbBtnStr} />
-          </View>
+        <View style={{ ...FbButtonSize, ...android_styles_container }}>
+          <FbSignInUpButton emailPwdBtnStr={this.props.emailPwdBtnStr} fbBtnStr={this.props.fbBtnStr} />
+        </View>
 
-          {this._renderEmailPwdOption()}
+        {this._renderEmailPwdOption()}
 
-          { this.hack() && 
-          <View style={{...styles.error_message_container}}>
+        { this.hack() &&
+          <View style={{ ...styles.error_message_container }}>
             <Text style={{ ...styles.error_message }}>
               Invalid Email or password
             </Text>
           </View> }
 
-          <FooterNavButtons
-            emailPwdBtnStr={this.props.emailPwdBtnStr}
-            _footerButton={this.props._footerButton}
-            onForgotPassword={this.props.onForgotPassword}
-            onNavString1={this.props.onNavString1}
-            onNavString2={this.props.onNavString2}
-            onNavPress={this.props.onNavPress}
-            keyboardflag={this.state.keyboardflag}
-            pressEmailPwdButton={this.pressEmailPwdButton.bind(this)}
-            showEmailPwdState={this.state.showEmailPwdState}
-          />
+        <FooterNavButtons
+          emailPwdBtnStr={this.props.emailPwdBtnStr}
+          _footerButton={this.props._footerButton}
+          onForgotPassword={this.props.onForgotPassword}
+          onNavString1={this.props.onNavString1}
+          onNavString2={this.props.onNavString2}
+          onNavPress={this.props.onNavPress}
+          keyboardflag={this.state.keyboardflag}
+          pressEmailPwdButton={this.pressEmailPwdButton.bind(this)}
+          showEmailPwdState={this.state.showEmailPwdState}
+        />
 
-          <ErrorMessage />
-        </View>
-      );
+        <ErrorMessage />
+      </View>
+    );
   }
-
 }
 
 //
 
 const mapStateToProps = ({ auth }) => {
   const { loginStatus, error } = auth;
-  return { loginStatus, error};
+  return { loginStatus, error };
 };
 
 let styles = RkStyleSheet.create(theme => ({
   screen: {
     flex: 1,
-    backgroundColor: theme.colors.screen.base
+    backgroundColor: theme.colors.screen.base,
   },
   error_message: {
     color: 'red',
-    textAlign: 'center', 
+    textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 25,
     marginTop: 0,
   },
   error_message_container: {
     alignItems: 'center',
-  }
+  },
 }));
 
-export default connect(mapStateToProps,null)(Login);
+export default connect(mapStateToProps, null)(Login);

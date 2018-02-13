@@ -2,45 +2,37 @@ import React from 'react';
 import {
   Image,
   View,
-  Dimensions
+  Dimensions,
 } from 'react-native';
 import {
   RkText,
   RkStyleSheet,
-  RkTheme
 } from 'react-native-ui-kitten';
-import {scale, scaleModerate, scaleVertical} from './../../utils/scale';
+import { scaleModerate } from './../../utils/scale';
 
 
 export class Walkthrough3 extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-
-
     /*
     let image = RkTheme.current.name === 'light'
       ? <Image source={require('../../assets/images/kittenImage.png')}/>
       : <Image source={require('../../assets/images/kittenImageDark.png')}/>;
     */
-    let contentHeight = scaleModerate(375, 1);
-    let height = Dimensions.get('window').height - contentHeight;
-    let width = Dimensions.get('window').width;
-    let height_sub = height/2;
-    let width_sub = width - 40;
+    const contentHeight = scaleModerate(375, 1);
+    const height = Dimensions.get('window').height - contentHeight;
+    const { width } = Dimensions.get('window');
+    const heightSub = height / 2;
+    const widthSub = width - 40;
 
-    image = <Image style={[styles.image, {height, width}]} source={require('../../assets/images/backgroundLoginV6.png')}/> ;
-    image_quality = <Image style={{ resizeMode: 'contain', height: height_sub, width: width_sub }} source={require('../../assets/images/valueForMoney.png')}/> ;
+    const image = <Image style={[styles.image, { height, width }]} source={require('../../assets/images/backgroundLoginV6.png')} />;
+    const imageQuality = <Image style={{ resizeMode: 'contain', height: heightSub, width: widthSub }} source={require('../../assets/images/valueForMoney.png')} />;
     return (
       <View style={styles.screen}>
         {image}
-        {image_quality}
-        <RkText rkType='header2' style={styles.text}>Value for your money</RkText>
+        {imageQuality}
+        <RkText rkType="header2" style={styles.text}>Value for your money</RkText>
       </View>
-    )
+    );
   }
 }
 
@@ -49,9 +41,9 @@ let styles = RkStyleSheet.create(theme => ({
     backgroundColor: theme.colors.screen.base,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    flex: 1
+    flex: 1,
   },
   text: {
-    marginTop: 20
-  }
+    marginTop: 20,
+  },
 }));

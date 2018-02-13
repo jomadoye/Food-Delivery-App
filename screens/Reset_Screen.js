@@ -79,26 +79,9 @@ class Reset_Screen extends Component {
   }
 
   onReset() {
-    // this.setState({ loadingState: true });
-    // console.log("Reset_Screen:Line 90: Email");
     NavigatorService.reset('welcome_screen');
-    // this.props.navigation.navigate('welcome_screen');
-    // this.setState({ loadingState: false });
     Keyboard.dismiss();
   }
-
-  /*
-  onButtonPress() {
-    // this.setState({ loadingState: true });
-    if (this.validateInput('emailReset', this.props.emailReset)) {
-        this.props.resetUser({email: this.props.emailReset});
-        console.log("Reset_Screen:Line 90: Email");
-        this.props.navigation.navigate('welcome_screen');
-    }
-    // this.setState({ loadingState: false });
-    Keyboard.dismiss();
-  }
-  */
 
   // Validate the form inputs
   validateInput(inputName, inputVal) {
@@ -119,7 +102,6 @@ class Reset_Screen extends Component {
   }
 
   renderSpinner() {
-    // console.log('Profile_Screen:line171: ' + this.state.loadingState);
     if (this.state.loadingState) {
       return (
           <Spinner visible={true} color={'#FFFFFF'} size={'large'} />
@@ -132,15 +114,9 @@ class Reset_Screen extends Component {
     let keyboardUp_justifyContent = (this.state.keyboardflag) ? 'flex-start' : 'space-between';
     let keyboardUp_styles_content = {justifyContent: keyboardUp_justifyContent};
 
-    // console.log('Reset_Screen:Line 157: Rendering Reset_Screen');
-    // console.log(keyboardUp_styles_content);
-
     return (
 
       <View style={{...styles.screen, ...keyboardUp_styles_content}}>
-
-
-
         <View>
           <ErrorMessage />
           <LoginHeaderImage
@@ -178,16 +154,6 @@ class Reset_Screen extends Component {
     );
   }
 }
-
-/*
-<GradientButton
-  style={styles.save}
-  rkType='large'
-  text='Send reset email'
-  onPress={() => {
-    this.onButtonPress();
-  }}/>
-*/
 
 let styles = RkStyleSheet.create(theme => ({
   screen: {
@@ -234,36 +200,3 @@ export default connect(mapStateToProps, {
   emailResetChanged, resetUser, errorSet
 })(Reset_Screen);
 
-/*
-
-<View style={styles.content}>
-  <View>
-    <RkTextInput
-      rkType='rounded'
-      placeholder='Email ( John.Doe@gmail.com )'
-      value={this.props.emailReset}
-      onChangeText={emailReset => this.onemailResetChange(emailReset)}
-      onBlur={() => { this.validateInput('email', this.props.emailReset); }}
-    />
-    <View>
-      { this.renderFormError('emailReset') }
-    </View>
-
-  </View>
-</View>
-
-{ renderIcon() }
-
-let keyboardUp_image = (this.state.keyboardflag) ? -1 : 1;
-let keyboardUp_image_content = { flex: keyboardUp_image };
-
-let renderIcon = () => {
-    return (
-      <View style={{ ...styles.imageStyle, ...keyboardUp_image_content }}>
-        <Image style={styles.image} source={require('./../assets/images/cartLogo.png')}/>
-        <RkText rkType='h1'>Registration</RkText>
-      </View>
-      );
-};
-
-*/

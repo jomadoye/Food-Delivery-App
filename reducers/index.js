@@ -9,5 +9,5 @@ export default combineReducers({
   auth: AuthReducer,
   fbauth: FacebookReducer,
   userdata: UserDataReducer,
-  vendor: VendorReducer
+  vendor: VendorReducer,
 });
