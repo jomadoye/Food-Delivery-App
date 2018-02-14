@@ -2,6 +2,10 @@ import React from 'react';
 import {
   View,
   ScrollView,
+  Text,
+  TouchableOpacity,
+  // Modal,
+  Button,
 } from 'react-native';
 import {
   RkText,
@@ -9,6 +13,7 @@ import {
 } from 'react-native-ui-kitten';
 import { HeaderBackButton } from 'react-navigation';
 import { connect } from 'react-redux';
+import Modal from "react-native-modal";
 import NavigatorService from '../utils/navigator';
 import {Avatar} from '../components';
 import {Gallery} from '../components';
@@ -25,6 +30,10 @@ export default class VendorProfile_Screen extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      isModalVisible: false
+    };
     
   }
 
@@ -62,6 +71,35 @@ export default class VendorProfile_Screen extends React.Component {
     };
   }
 
+  _toggleModal = () =>
+    this.setState({ isModalVisible: !this.state.isModalVisible });
+
+  renderModal () {
+    console.log('hit')
+    return (
+      <View style={styles.container}>
+          <Modal
+              visible={this.state.isModalVisible}
+              animationType={'slide'}
+              onRequestClose={() => this._toggleModal()}
+              onBackButtonPress={() => this._toggleModal()}
+              onBackdropPress={() => this._toggleModal()}
+          >
+            <View style={styles.modalContainer}>
+              <View style={styles.innerContainer}>
+                <Text>This is content inside of modal component</Text>
+                <Button
+                    onPress={() => this._toggleModal()}
+                    title="Close modal"
+                >
+                </Button>
+              </View>
+            </View>
+          </Modal>
+        </View>
+    )
+  }
+
   render() {
     let name = `${this.user.firstName} ${this.user.lastName}`;
     let images = this.user.images;
@@ -70,7 +108,10 @@ export default class VendorProfile_Screen extends React.Component {
         <View style={[styles.header, styles.bordered]}>
           <View style={styles.row}>
             <View style={styles.buttons}>
-              <RkButton style={styles.button} rkType='icon circle'>
+              <RkButton
+                style={styles.button}
+                rkType='icon circle'
+                onPress={this._toggleModal}>
                 <RkText rkType='moon large primary'>{FontIcons.profile}</RkText>
               </RkButton>
             </View>
@@ -100,6 +141,7 @@ export default class VendorProfile_Screen extends React.Component {
           </View>
         </View>
         <Gallery items={images}/>
+        {this.state.isModalVisible && this.renderModal()}
       </ScrollView>
     )
   }
@@ -147,7 +189,19 @@ let styles = RkStyleSheet.create(theme => ({
   button: {
     marginTop: 27.5,
     alignSelf: 'center'
-  }
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: 'grey',
+  },
+  innerContainer: {
+    alignItems: 'center',
+  },
 }));
 
 // const mapStateToProps = ({ vendor }) => {
